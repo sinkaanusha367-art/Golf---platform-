@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GolfGive - Play. Win. Give.</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(0,0,0,0.9);position:fixed;width:100%;z-index:100}
+.logo{font-size:24px;font-weight:bold;color:#00e676}
+.nav-links a{color:#fff;text-decoration:none;margin-left:20px}
+.btn{background:#00e676;color:#000;padding:10px 20px;border-radius:25px;font-weight:bold;border:none;cursor:pointer}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#16213e);padding:20px}
+.hero h1{font-size:48px;margin-bottom:20px;line-height:1.2}
+.hero h1 span{color:#00e676}
+.hero p{font-size:18px;color:#aaa;margin-bottom:40px;max-width:600px}
+.hero-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.btn-outline{border:2px solid #00e676;color:#00e676;padding:12px 30px;border-radius:25px;background:transparent;cursor:pointer;font-size:16px}
+.btn-primary{background:#00e676;color:#000;padding:12px 30px;border-radius:25px;border:none;cursor:pointer;font-size:16px;font-weight:bold}
+.features{padding:80px 40px;background:#111}
+.features h2{text-align:center;font-size:36px;margin-bottom:50px}
+.features h2 span{color:#00e676}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.card{background:#1a1a1a;border-radius:15px;padding:30px;border:1px solid #333;transition:transform 0.3s}
+.card:hover{transform:translateY(-5px);border-color:#00e676}
+.card-icon{font-size:40px;margin-bottom:15px}
+.card h3{font-size:20px;margin-bottom:10px;color:#00e676}
+.card p{color:#aaa;line-height:1.6}
+.how-it-works{padding:80px 40px;background:#0a0a0a;text-align:center}
+.how-it-works h2{font-size:36px;margin-bottom:50px}
+.how-it-works h2 span{color:#00e676}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+.step{padding:30px}
+.step-num{width:60px;height:60px;background:#00e676;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;margin:0 auto 20px}
+.step h3{margin-bottom:10px}
+.step p{color:#aaa}
+.charity{padding:80px 40px;background:linear-gradient(135deg,#1a1a2e,#16213e);text-align:center}
+.charity h2{font-size:36px;margin-bottom:20px}
+.charity h2 span{color:#00e676}
+.charity p{color:#aaa;font-size:18px;max-width:600px;margin:0 auto 40px}
+.charity-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px}
+.charity-card{background:rgba(0,230,118,0.1);border:1px solid #00e676;border-radius:15px;padding:25px}
+.charity-card h4{color:#00e676;margin-bottom:10px}
+.charity-card p{color:#aaa;font-size:14px}
+.pricing{padding:80px 40px;background:#111;text-align:center}
+.pricing h2{font-size:36px;margin-bottom:50px}
+.pricing h2 span{color:#00e676}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:700px;margin:0 auto}
+.plan{background:#1a1a1a;border-radius:15px;padding:40px;border:1px solid #333}
+.plan.popular{border-color:#00e676;position:relative}
+.popular-badge{background:#00e676;color:#000;padding:5px 15px;border-radius:25px;font-size:12px;font-weight:bold;position:absolute;top:-15px;left:50%;transform:translateX(-50%)}
+.plan h3{font-size:24px;margin-bottom:10px}
+.plan .price{font-size:48px;font-weight:bold;color:#00e676;margin:20px 0}
+.plan .price span{font-size:18px;color:#aaa}
+.plan ul{list-style:none;margin:20px 0;text-align:left}
+.plan ul li{padding:8px 0;color:#aaa;border-bottom:1px solid #333}
+.plan ul li::before{content:"✓ ";color:#00e676}
+.cta{padding:80px 40px;background:linear-gradient(135deg,#00e676,#00bcd4);text-align:center}
+.cta h2{font-size:36px;color:#000;margin-bottom:20px}
+.cta p{color:#000;font-size:18px;margin-bottom:40px}
+.btn-dark{background:#000;color:#00e676;padding:15px 40px;border-radius:25px;border:none;cursor:pointer;font-size:18px;font-weight:bold}
+footer{background:#0a0a0a;padding:40px;text-align:center;color:#aaa}
+.footer-logo{font-size:24px;font-weight:bold;color:#00e676;margin-bottom:20px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">⛳ GolfGive</div>
+  <div class="nav-links">
+    <a href="#">How It Works</a>
+    <a href="#">Charities</a>
+    <a href="#">Draw</a>
+    <button class="btn" onclick="showLogin()">Login</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Play Golf.<br><span>Win Big.</span><br>Change Lives.</h1>
+    <p>Enter your scores, join monthly prize draws, and support the charity you love. Golf with purpose.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showSubscribe()">Start Playing →</button>
+      <button class="btn-outline" onclick="scrollToSection('how')">How It Works</button>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <h2>Everything You <span>Need</span></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏌️</div>
+      <h3>Score Tracking</h3>
+      <p>Enter your last 5 Stableford scores easily. Simple, fast, and always up to date.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎰</div>
+      <h3>Monthly Draws</h3>
+      <p>Win from 3, 4, or 5 number matches. Jackpot rolls over if unclaimed!</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">❤️</div>
+      <h3>Charity Impact</h3>
+      <p>10% of every subscription goes to your chosen charity. Play and give back.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h3>Prize Pools</h3>
+      <p>40% jackpot, 35% for 4-match, 25% for 3-match. Real money, real winners.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" id="how">
+  <h2>How It <span>Works</span></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Subscribe</h3>
+      <p>Choose monthly or yearly plan and join the community</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Enter Scores</h3>
+      <p>Add your Stableford scores after every round</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Join Draw</h3>
+      <p>Your scores automatically enter you in the monthly draw</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Win & Give</h3>
+      <p>Win prizes and support your chosen charity</p>
+    </div>
+  </div>
+</section>
+
+<section class="charity">
+  <h2>Play With <span>Purpose</span></h2>
+  <p>Every subscription contributes to life-changing charities. You choose where your impact goes.</p>
+  <div class="charity-cards">
+    <div class="charity-card">
+      <h4>🏥 Health</h4>
+      <p>Supporting medical research and patient care</p>
+    </div>
+    <div class="charity-card">
+      <h4>🌱 Environment</h4>
+      <p>Golf courses going green for the planet</p>
+    </div>
+    <div class="charity-card">
+      <h4>👶 Children</h4>
+      <p>Giving kids access to sport and education</p>
+    </div>
+    <div class="charity-card">
+      <h4>🤝 Community</h4>
+      <p>Building stronger local communities</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <h2>Simple <span>Pricing</span></h2>
+  <div class="plans">
+    <div class="plan">
+      <h3>Monthly</h3>
+      <div class="price">£9<span>/mo</span></div>
+      <ul>
+        <li>Full score tracking</li>
+        <li>Monthly draw entry</li>
+        <li>Charity contribution</li>
+        <li>Winner dashboard</li>
+      </ul>
+      <button class="btn-primary" style="width:100%" onclick="showSubscribe()">Get Started</button>
+    </div>
+    <div class="plan popular">
+      <div class="popular-badge">BEST VALUE</div>
+      <h3>Yearly</h3>
+      <div class="price">£79<span>/yr</span></div>
+      <ul>
+        <li>Everything in Monthly</li>
+        <li>2 months free</li>
+        <li>Priority support</li>
+        <li>Bonus draw entries</li>
+      </ul>
+      <button class="btn-primary" style="width:100%" onclick="showSubscribe()">Get Started</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Ready to Play With Purpose?</h2>
+  <p>Join thousands of golfers making every round count</p>
+  <button class="btn-dark" onclick="showSubscribe()">Start Your Journey →</button>
+</section>
+
+<footer>
+  <div class="footer-logo">⛳ GolfGive</div>
+  <p>© 2026 GolfGive. All rights reserved. | digitalheroes.co.in</p>
+</footer>
+
+<!-- Login Modal -->
+<div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:#1a1a1a;padding:40px;border-radius:15px;width:90%;max-width:400px;border:1px solid #00e676">
+    <h2 style="margin-bottom:20px;color:#00e676">Login</h2>
+    <input type="email" placeholder="Email" style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff"><br>
+    <input type="password" placeholder="Password" style="width:100%;padding:12px;margin-bottom:20px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff"><br>
+    <button onclick="doLogin()" style="width:100%;padding:12px;background:#00e676;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-bottom:10px">Login</button>
+    <button onclick="closeModal('loginModal')" style="width:100%;padding:12px;background:transparent;border:1px solid #333;border-radius:8px;color:#fff;cursor:pointer">Cancel</button>
+  </div>
+</div>
+
+<!-- Subscribe Modal -->
+<div id="subscribeModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:#1a1a1a;padding:40px;border-radius:15px;width:90%;max-width:400px;border:1px solid #00e676">
+    <h2 style="margin-bottom:20px;color:#00e676">Subscribe</h2>
+    <input type="text" placeholder="Full Name" style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff"><br>
+    <input type="email" placeholder="Email" style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff"><br>
+    <input type="password" placeholder="Password" style="width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff"><br>
+    <select style="width:100%;padding:12px;margin-bottom:20px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff">
+      <option>Monthly - £9/mo</option>
+      <option>Yearly - £79/yr</option>
+    </select>
+    <button onclick="doSignup()" style="width:100%;padding:12px;background:#00e676;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-bottom:10px">Subscribe Now</button>
+    <button onclick="closeModal('subscribeModal')" style="width:100%;padding:12px;background:transparent;border:1px solid #333;border-radius:8px;color:#fff;cursor:pointer">Cancel</button>
+  </div>
+</div>
+
+<script>
+function showLogin(){document.getElementById('loginModal').style.display='flex'}
+function showSubscribe(){document.getElementById('subscribeModal').style.display='flex'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function doLogin(){alert('Login functionality - Supabase integration coming soon!')}
+function doSignup(){alert('Signup functionality - Supabase integration coming soon!')}
+</script>
+
+</body>
+        </html>
